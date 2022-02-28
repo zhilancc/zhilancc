@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>气泡对话框</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0 80px;
+            background-color: #fff;
+        }
+        div {
+            margin: 15px 0;
+        }
+        .box01 {
+            width: 0;
+            height: 0;
+            font-size: 0; /* 兼容IE6 */
+            overflow: hidden; /* 兼容IE6 */
+            border-style: solid;
+            border-width: 30px;
+            border-color: #f00 #00f #ff5500 #0f0;
+        }
+        .box02 {
+            width: 0;
+            height: 0;
+            font-size: 0; /* 兼容IE6 */
+            overflow: hidden; /* 兼容IE6 */
+            border-style: solid;
+            border-width: 30px;
+            border-color: #f00 transparent transparent;
+        }
+        .box03 {
+            width: 0;
+            height: 0;
+            font-size: 0; /* 兼容IE6 */
+            overflow: hidden; /* 兼容IE6 */
+            border-style: solid;
+            border-width: 30px;
+            border-color: transparent #00f transparent transparent;
+        }
+        .box04 {
+            width: 0;
+            height: 0;
+            font-size: 0; /* 兼容IE6 */
+            overflow: hidden; /* 兼容IE6 */
+            border-style: solid;
+            border-width: 30px;
+            border-color: transparent transparent transparent #ff5500;
+        }
+        .box05 {
+            width: 0;
+            height: 0;
+            font-size: 0; /* 兼容IE6 */
+            overflow: hidden; /* 兼容IE6 */
+            border-style: solid;
+            border-width: 30px;
+            border-color: transparent transparent #0f0;
+        }
+        .box06 {
+            width: 0;
+            height: 0;
+            border-top: 30px solid transparent;
+            border-right: 30px solid deepskyblue;
+            border-bottom: 30px solid transparent;
+            border-left: 0px solid transparent;
+            position: relative;
+        }
+        .box06::before {
+            width: 0;
+            height: 0;
+            content: '';
+            border-top: 20px solid transparent;
+            border-right: 20px solid #fff;
+            border-bottom: 20px solid transparent;
+            border-left: 0px solid transparent;
+            position: absolute;
+            top: -20px;
+            left: 10px;
+        }
+        .box07 {
+            width: 0;
+            height: 0;
+            font-size: 0;
+            overflow: hidden;
+            border-top: 30px solid deepskyblue;
+            border-right: 15px solid deepskyblue;
+            border-bottom: 30px solid transparent;
+            border-left: 15px solid transparent;
+        }
+        .box08 {
+            width: 0;
+            height: 0;
+            font-size: 0;
+            border-style: solid;
+            border-width: 30px 15px;
+            border-color: deepskyblue deepskyblue transparent transparent;
+            position: relative;
+        }
+        .box08::before {
+            content: '';
+            width: 0;
+            height: 0;
+            font-size: 0;
+            border-style: solid;
+            border-width: 30px 5px;
+            border-color: #fff #fff transparent transparent;
+            position: absolute;
+            left: 5px;
+            top: -30px;
+        }
+        .chat_box {
+            margin: 80px 0;
+        }
+        .chat_box_01 {
+            width: 360px;
+            height: 80px;
+            line-height: 80px;
+            background-color: deepskyblue;
+            font-size: 21px;
+            color: #fff;
+            border-radius: 10px;
+            padding: 0 20px;
+            position: relative;
+        }
+        .chat_box_icon_01 {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px;
+            border-color: deepskyblue transparent transparent;
+            position: absolute;
+            top: 80px;
+            left: 40px;
+        }
+        .chat_box_02 {
+            width: 350px;
+            height: 70px;
+            line-height: 70px;
+            background-color: #fff;
+            border: 5px solid deepskyblue;
+            font-size: 21px;
+            color: deepskyblue;
+            padding: 0 20px;
+            border-radius: 10px;
+            position: relative;
+        }
+        .chat_box_icon_02 {
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px;
+            border-color: deepskyblue transparent transparent;
+            position: absolute;
+            top: 75px;
+            left: 40px;
+            z-index: 999;
+        }
+        .chat_box_02::before {
+            content: '';
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 15px;
+            border-color: #fff transparent transparent;
+            position: absolute;
+            top: 70px;
+            left: 40px;
+            z-index: 9999;
+        }
+        .chat_box_03 {
+            width: 360px;
+            height: 80px;
+            line-height: 80px;
+            border-radius: 10px;
+            background-color: deepskyblue;
+            padding: 0 20px;
+            font-size: 21px;
+            color: #fff;
+            position: relative;
+        }
+        .chat_box_icon_03 {
+            width: 0;
+            height: 0;
+            font-size: 0;
+            overflow: hidden;
+            border-style: solid;
+            border-width: 20px 10px;
+            border-color: deepskyblue deepskyblue transparent transparent;
+            position: absolute;
+            top: 80px;
+            right: 40px;
+        }
+        .chat_box_04 {
+            width: 360px;
+            height: 80px;
+            line-height: 80px;
+            background-color: deepskyblue;
+            padding: 0 20px;
+            border-radius: 10px;
+            font-size: 21px;
+            color: #fff;
+            position: relative;
+        }
+        .chat_box_icon_04 {
+            width: 0;
+            height: 0;
+            font-size: 0;
+            border-style: solid;
+            border-width: 30px 15px;
+            border-color: deepskyblue deepskyblue transparent transparent;
+            position: absolute;
+            top: 80px;
+            right: 40px;
+            z-index: 999;
+        }
+        .chat_box_icon_04::after {
+            content: '';
+            width: 0;
+            height: 0;
+            font-size: 0;
+            border-style: solid;
+            border-width: 30px 5px;
+            border-color: #fff  #fff transparent transparent;
+            position: absolute;
+            top: -30px;
+            left: 5px;
+            z-index: 9999;
+        }
+        .chat_box_05 {
+            width: 300px;
+            padding: 80px 20px;
+            margin-left: 100px;
+            background-color: deepskyblue;
+            border-radius: 220px / 120px;
+            /* border-top-left-radius: 220px 120px; */
+            /* border-top-right-radius: 220px 120px; */
+            /* border-bottom-left-radius: 220px 120px; */
+            /* border-bottom-right-radius: 220px 120px; */
+            font-size: 21px;
+            color: #fff;
+            position: relative;
+        }
+        .chat_box_icon_bot_05 {
+            width: 30px;
+            height: 30px;
+            border-radius: 30px;
+            background-color: deepskyblue;
+            position: absolute;
+            left: 10px;
+            bottom: -20px;
+        }
+        .chat_box_icon_top_05 {
+            content: '';
+            width: 15px;
+            height: 15px;
+            border-radius: 15px;
+            background-color: deepskyblue;
+            position: absolute;
+            left: 0px;
+            bottom: -40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box01"></div>
+        <div class="box02"></div>
+        <div class="box03"></div>
+        <div class="box04"></div>
+        <div class="box05"></div>
+        <div class="box06"></div>
+        <div class="box07"></div>
+        <div class="box08"></div>
+        <div class="chat_box_01 chat_box">
+            <span class="chat_box_icon_01"></span>
+            边框法实现底部尖角对话框
+        </div>
+        <div class="chat_box_02 chat_box">
+            <span class="chat_box_icon_02"></span>
+            边框法实现底部尖角对话框
+        </div>
+        <div class="chat_box_03 chat_box">
+            <span class="chat_box_icon_03"></span>
+            边框法实现底部尖角对话框
+        </div>
+        <div class="chat_box_04 chat_box">
+            <span class="chat_box_icon_04"></span>
+            边框法实现底部尖角对话框
+        </div>
+        <div class="chat_box_05 chat_box">
+            <span class="chat_box_icon_bot_05"></span>
+            <span class="chat_box_icon_top_05"></span>
+            border-radius 实现气泡对话框
+        </div>
+    </div>
+</body>
+</html>
